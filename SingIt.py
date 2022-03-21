@@ -200,25 +200,10 @@ class Search(unittest.TestCase):
         self.driver = webdriver.Chrome()
         wait = WebDriverWait(self.driver, 10)
         self.driver.maximize_window()
-        payload = {
-            "email": "mykhailo.kovtun.work@gmail.com",
-            "password": "Aa12345678",
-            "token": "native-client-token"
-        }
-
-        res = requests.post("https://api.singit.io/Users/Login", data=payload)
-
-
-
-        print(res.json())
-
-        self.driver.get("https://singit.io/")
-        self.driver.add_cookie(res.cookies)
-        self.driver.get("https://singit.io/")
-        #self.driver.get("https://singit.io/auth/login")
-        #self.driver.find_element(By.XPATH, Selectors.emailX).send_keys(Selectors.valid_mail)
-        #self.driver.find_element(By.XPATH, Selectors.passwordX).send_keys(Selectors.valid_pass)
-        #self.driver.find_element(By.ID, Selectors.login_btn_ID).click()
+        self.driver.get("https://singit.io/auth/login")
+        self.driver.find_element(By.XPATH, Selectors.emailX).send_keys(Selectors.valid_mail)
+        self.driver.find_element(By.XPATH, Selectors.passwordX).send_keys(Selectors.valid_pass)
+        self.driver.find_element(By.ID, Selectors.login_btn_ID).click()
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".next")))
         while self.driver.find_element(By.CSS_SELECTOR, ".next").is_displayed():
             self.driver.find_element(By.CSS_SELECTOR, ".next").click()
