@@ -6,7 +6,7 @@ import unittest
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import Selectors
-import requests
+
 
 
 
@@ -25,13 +25,9 @@ class Login(unittest.TestCase):
 
     def test2_login_process(self):
         wait = WebDriverWait(self.driver, 10)
-
         self.driver.find_element(By.XPATH, Selectors.emailX).send_keys(Selectors.valid_mail)
-
         self.driver.find_element(By.XPATH, Selectors.passwordX).send_keys(Selectors.valid_pass)
-
         self.driver.find_element(By.ID, Selectors.login_btn_ID).click()
-
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".next")))
         while self.driver.find_element(By.CSS_SELECTOR, ".next").is_displayed():
             self.driver.find_element(By.CSS_SELECTOR, ".next").click()
