@@ -59,24 +59,24 @@ class Explore(unittest.TestCase):
 
     def test1_explore_page(self):
         time.sleep(2)
-        self.driver.find_element(By.XPATH, "//*[@id='content']/div[1]/h1").is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.logoX).is_displayed()
         self.driver.find_element(By.XPATH, Selectors.notif_iconX).is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='content']/div[1]/div").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='word-box']").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='content']/div[2]/div[2]").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='content']/div[2]/div[3]").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='content']/div[2]/div[4]").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='content']/div[2]/div[5]").is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.most_popularX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.my_wordsX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.popular_genres_logoX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.popular_genresX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.recently_played_logoX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.recently_playedX).is_displayed()
 
     def test2_navigation(self):
         wait = WebDriverWait(self.driver, 10)
-        wait.until(EC.visibility_of_element_located((By.ID, "tabs-wrapper")))
-        self.driver.find_element(By.XPATH, "//*[@id='buttons-wrapper']/div[2]").click()
-        wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='search-wrapper']")))
-        self.driver.find_element(By.XPATH, "//*[@id='buttons-wrapper']/div[3]").click()
+        wait.until(EC.visibility_of_element_located((By.ID, Selectors.navigation_menuX)))
+        self.driver.find_element(By.XPATH, Selectors.search_btnX).click()
+        wait.until(EC.visibility_of_element_located((By.XPATH, Selectors.search_logoX)))
+        self.driver.find_element(By.XPATH, Selectors.profile_btnX).click()
         wait.until(EC.visibility_of_element_located((By.ID, "header")))
-        self.driver.find_element(By.XPATH, "//*[@id='buttons-wrapper']/div[1]").click()
-        self.driver.find_element(By.XPATH, "//*[@id='content']/div[1]/h1").is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.explore_btnX).click()
+        self.driver.find_element(By.XPATH, Selectors.logoX).is_displayed()
 
     def test3_notification(self):
         wait = WebDriverWait(self.driver, 10)
@@ -99,7 +99,7 @@ class Explore(unittest.TestCase):
     def test5_mostPopular(self):
         wait = WebDriverWait(self.driver, 10)
         time.sleep(2)
-        self.driver.find_element(By.XPATH, "//*[@id='content']/div[1]/div").is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.most_popularX).is_displayed()
         self.driver.find_element(By.XPATH, "//ion-icon[@name='chevron-forward-outline']").click()
         self.driver.find_element(By.XPATH, "//ion-icon[@name='chevron-back-outline']").click()
         self.driver.find_element(By.XPATH, "//div[@id='track-wrapper']/div").click()
