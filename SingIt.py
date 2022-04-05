@@ -114,16 +114,16 @@ class Explore(unittest.TestCase):
 
     def test7_popular_genres(self):
         wait = WebDriverWait(self.driver, 10)
-        self.driver.find_element(By.XPATH, "//*[@id='content']/div[2]/div[2]").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='content']/div[2]/div[3]").is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.popular_genres_logoX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.popular_genresX).is_displayed()
         self.driver.find_element(By.XPATH, "//*[@id='content']/div[2]/div[3]/app-genre[1]").click()
-        wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='search-wrapper']/input")))
-        genre_search = self.driver.find_element(By.XPATH, "//*[@id='search-wrapper']/input")
+        wait.until(EC.visibility_of_element_located((By.XPATH, Selectors.search_barX)))
+        genre_search = self.driver.find_element(By.XPATH, Selectors.search_barX)
         print(genre_search.get_attribute("value"))
 
     def test8_recently_played(self):
-        self.driver.find_element(By.XPATH, "//*[@id='content']/div[2]/div[4]").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='content']/div[2]/div[5]").is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.recently_played_logoX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.recently_playedX).is_displayed()
         self.driver.find_element(By.XPATH, "(//ion-icon[@name='chevron-forward-outline'])[3]").click()
         self.driver.find_element(By.XPATH, "(//ion-icon[@name='chevron-back-outline'])[3]").click()
         # Recently played song can be changed
@@ -171,8 +171,8 @@ class Notification_word(unittest.TestCase):
         self.driver.find_element(By.XPATH, Selectors.passwordX).send_keys(Selectors.valid_pass)
         self.driver.find_element(By.ID, Selectors.login_btn_ID).click()
         wait.until(
-            EC.element_to_be_clickable((By.XPATH, "//*[@id='mat-dialog-2']/app-new-notification-popover/div/span[2]")))
-        self.driver.find_element(By.XPATH, "//*[@id='mat-dialog-2']/app-new-notification-popover/div/span[2]").click()
+            EC.element_to_be_clickable((By.XPATH, Selectors.new_notificationX)))
+        self.driver.find_element(By.XPATH, Selectors.new_notificationX).click()
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".next")))
         while self.driver.find_element(By.CSS_SELECTOR, ".next").is_displayed():
             self.driver.find_element(By.CSS_SELECTOR, ".next").click()
@@ -203,20 +203,20 @@ class Search(unittest.TestCase):
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".next")))
         while self.driver.find_element(By.CSS_SELECTOR, ".next").is_displayed():
             self.driver.find_element(By.CSS_SELECTOR, ".next").click()
-        self.driver.find_element(By.XPATH, "//*[@id='buttons-wrapper']/div[2]").click()
-        wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='search-wrapper']")))
+        self.driver.find_element(By.XPATH, Selectors.search_btnX).click()
+        wait.until(EC.visibility_of_element_located((By.XPATH, Selectors.search_logoX)))
 
     def test1_search_page(self):
-        self.driver.find_element(By.XPATH, "/html/body/app-root/app-search/ion-content/div/h1").is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.search_logoX).is_displayed()
         self.driver.find_element(By.NAME, "searchBar").is_displayed()
-        self.driver.find_element(By.XPATH, "/html/body/app-root/app-search/ion-content/div/div").is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.search_historyX).is_displayed()
 
     def test2_searching(self):
         self.driver.find_element(By.NAME, "searchBar").send_keys("hi")
         time.sleep(1)
-        self.driver.find_element(By.XPATH, "/html/body/app-root/app-search/ion-content/div/div[1]").is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.searched_wordX).is_displayed()
         self.driver.find_element(By.ID, "words-row").is_displayed()
-        self.driver.find_element(By.XPATH, "/html/body/app-root/app-search/ion-content/div/div[3]").is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.searched_tracksX).is_displayed()
         self.driver.find_element(By.ID, "content-wrapper").is_displayed()
 
     def test3_word_searching(self):
@@ -254,70 +254,61 @@ class Profile(unittest.TestCase):
         wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='header']/h1")))
 
     def test1_profile_page(self):
-        self.driver.find_element(By.XPATH, "//*[@id='header']/h1").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='details-wrapper']/h2").is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.profile_logoX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.profile_nameX).is_displayed()
         self.driver.find_element(By.ID, "stats").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='links']/li[1]").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='links']/li[2]").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='links']/li[3]").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='links']/li[4]").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='links']/li[5]").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='links']/li[6]").is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.edit_profileX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.contact_usX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.privacy_policyX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.accessibility_policyX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.cancel_subscriptionX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.log_outX).is_displayed()
         self.driver.find_element(By.ID, "support-wrapper").is_displayed()
 
     def test2_edit_profile_page(self):
         wait = WebDriverWait(self.driver, 10)
-        self.driver.find_element(By.XPATH, "//*[@id='links']/li[1]").click()
+        self.driver.find_element(By.XPATH, Selectors.edit_profileX).click()
         wait.until(EC.visibility_of_element_located(
-            (By.XPATH, "/html/body/app-root/app-edit-profile/ion-content/div/form/mat-form-field[1]")))
-        self.driver.find_element(By.XPATH,
-                                 "/html/body/app-root/app-edit-profile/ion-content/div/form/mat-form-field[1]").is_displayed()
-        self.driver.find_element(By.XPATH,
-                                 "/html/body/app-root/app-edit-profile/ion-content/div/form/mat-form-field[2]").is_displayed()
-        self.driver.find_element(By.XPATH,
-                                 "/html/body/app-root/app-edit-profile/ion-content/div/form/mat-form-field[3]").is_displayed()
-        self.driver.find_element(By.XPATH,
-                                 "/html/body/app-root/app-edit-profile/ion-content/div/form/mat-form-field[4]").is_displayed()
-        self.driver.find_element(By.XPATH,
-                                 "/html/body/app-root/app-edit-profile/ion-content/div/form/div[1]").is_displayed()
-        self.driver.find_element(By.XPATH,
-                                 "/html/body/app-root/app-edit-profile/ion-content/div/form/div[2]").is_displayed()
-        self.driver.find_element(By.XPATH,
-                                 "/html/body/app-root/app-edit-profile/ion-content/div/form/div[3]").is_displayed()
-        self.driver.find_element(By.XPATH,
-                                 "/html/body/app-root/app-edit-profile/ion-content/div/form/button").is_displayed()
+            (By.XPATH, )))
+        self.driver.find_element(By.XPATH, Selectors.firstnameX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.lastnameX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.edit_emailX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.languageX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.allow_explicit_lyricsX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.show_player_when_quiz_appearsX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.pause_the_song_when_translatingX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.update_profile_btnX).is_displayed()
 
     def test3_editing_profile(self):
         wait = WebDriverWait(self.driver, 10)
-        self.driver.find_element(By.XPATH, "//*[@id='links']/li[1]").click()
-        wait.until(EC.visibility_of_element_located(
-            (By.XPATH, "/html/body/app-root/app-edit-profile/ion-content/div/form/mat-form-field[1]")))
-        self.driver.find_element(By.XPATH, "//input[@id='mat-input-0']").clear()
-        self.driver.find_element(By.XPATH, "//input[@id='mat-input-0']").send_keys("Autotest")
-        self.driver.find_element(By.XPATH, "//input[@id='mat-input-1']").clear()
-        self.driver.find_element(By.XPATH, "//input[@id='mat-input-1']").send_keys("Testingtest")
-        self.driver.find_element(By.XPATH, "//input[@id='mat-input-2']").clear()
-        self.driver.find_element(By.XPATH, "//input[@id='mat-input-2']").send_keys("auto-testingtest@singit.io")
-        self.driver.find_element(By.ID, "mat-select-value-1").click()
+        self.driver.find_element(By.XPATH, Selectors.edit_profileX).click()
+        wait.until(EC.visibility_of_element_located((By.XPATH, Selectors.firstnameX)))
+        self.driver.find_element(By.XPATH, Selectors.firstname_barX).clear()
+        self.driver.find_element(By.XPATH, Selectors.firstname_barX).send_keys("Autotest")
+        self.driver.find_element(By.XPATH, Selectors.lastname_barX).clear()
+        self.driver.find_element(By.XPATH, Selectors.lastname_barX).send_keys("Testingtest")
+        self.driver.find_element(By.XPATH, Selectors.email_barX).clear()
+        self.driver.find_element(By.XPATH, Selectors.email_barX).send_keys("auto-testingtest@singit.io")
+        self.driver.find_element(By.ID, Selectors.language_dropdownX).click()
         self.driver.find_element(By.CSS_SELECTOR, "#mat-option-0 > .mat-option-text").click()
         self.driver.find_element(By.XPATH, "//ion-toggle").click()
         self.driver.find_element(By.XPATH, "//div[2]/ion-toggle").click()
         self.driver.find_element(By.XPATH, "//div[3]/ion-toggle").click()
         self.driver.find_element(By.XPATH, "//button[contains(.,'Update')]").click()
         time.sleep(1)
-        print(self.driver.find_element(By.XPATH, "//input[@id='mat-input-0']").get_attribute("value"))
-        print(self.driver.find_element(By.XPATH, "//input[@id='mat-input-1']").get_attribute("value"))
-        print(self.driver.find_element(By.XPATH, "//input[@id='mat-input-2']").get_attribute("value"))
+        print(self.driver.find_element(By.XPATH, Selectors.firstname_barX).get_attribute("value"))
+        print(self.driver.find_element(By.XPATH, Selectors.lastname_barX).get_attribute("value"))
+        print(self.driver.find_element(By.XPATH, Selectors.email_barX).get_attribute("value"))
         print(self.driver.find_element(By.XPATH, "//ion-toggle").is_enabled())
         print(self.driver.find_element(By.XPATH, "//div[2]/ion-toggle").is_enabled())
         time.sleep(1)
-        self.driver.find_element(By.XPATH, "//input[@id='mat-input-0']").clear()
-        self.driver.find_element(By.XPATH, "//input[@id='mat-input-0']").send_keys("Auti")
-        self.driver.find_element(By.XPATH, "//input[@id='mat-input-1']").clear()
-        self.driver.find_element(By.XPATH, "//input[@id='mat-input-1']").send_keys("Testing")
-        self.driver.find_element(By.XPATH, "//input[@id='mat-input-2']").clear()
-        self.driver.find_element(By.XPATH, "//input[@id='mat-input-2']").send_keys("auto-testing@singit.io")
-        self.driver.find_element(By.ID, "mat-select-value-1").click()
+        self.driver.find_element(By.XPATH, Selectors.firstname_barX).clear()
+        self.driver.find_element(By.XPATH, Selectors.firstname_barX).send_keys("Auto")
+        self.driver.find_element(By.XPATH, Selectors.lastname_barX).clear()
+        self.driver.find_element(By.XPATH, Selectors.lastname_barX).send_keys("Testing")
+        self.driver.find_element(By.XPATH, Selectors.email_barX).clear()
+        self.driver.find_element(By.XPATH, Selectors.email_barX).send_keys("auto-testing@singit.io")
+        self.driver.find_element(By.ID, Selectors.language_dropdownX).click()
         self.driver.find_element(By.CSS_SELECTOR, "#mat-option-4 > span").click()
         self.driver.find_element(By.XPATH, "//ion-toggle").click()
         self.driver.find_element(By.XPATH, "//div[2]/ion-toggle").click()
@@ -335,19 +326,19 @@ class Profile(unittest.TestCase):
         self.driver.find_element(By.XPATH, "//*[@id='buttons']/button").click()
 
     def test5_privacy_policy(self):
-        self.driver.find_element(By.XPATH, "//*[@id='links']/li[3]").click()
+        self.driver.find_element(By.XPATH, Selectors.privacy_policyX).click()
         self.driver.find_element(By.XPATH, "//*[@id='wrapper']/p[1]").is_displayed()
 
     def test6_accessibility_policy(self):
-        self.driver.find_element(By.XPATH, "//*[@id='links']/li[4]").click()
+        self.driver.find_element(By.XPATH, Selectors.accessibility_policyX).click()
         self.driver.find_element(By.XPATH, "//*[@id='wrapper']").is_displayed()
 
     def test7_cancel_subscription(self):
-        self.driver.find_element(By.XPATH, "//*[@id='links']/li[5]").click()
+        self.driver.find_element(By.XPATH, Selectors.cancel_subscriptionX).click()
         self.driver.find_element(By.XPATH, "//*[@id='wrapper']").is_displayed()
 
     def test8_logout(self):
-        self.driver.find_element(By.XPATH, "//*[@id='links']/li[6]").click()
+        self.driver.find_element(By.XPATH, Selectors.log_outX).click()
         self.driver.find_element(By.ID, "logo").is_displayed()
 
     def tearDown(self):
@@ -430,8 +421,8 @@ class Lessons(unittest.TestCase):
     def test1_lesson_play(self):
         wait = WebDriverWait(self.driver, 10)
         wait.until(
-            EC.element_to_be_clickable((By.XPATH, "//*[@id='mat-dialog-2']/app-new-notification-popover/div/span[2]")))
-        self.driver.find_element(By.XPATH, "//*[@id='mat-dialog-2']/app-new-notification-popover/div/span[2]").click()
+            EC.element_to_be_clickable((By.XPATH, Selectors.new_notificationX)))
+        self.driver.find_element(By.XPATH, Selectors.new_notificationX).click()
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".next")))
         while self.driver.find_element(By.CSS_SELECTOR, ".next").is_displayed():
             self.driver.find_element(By.CSS_SELECTOR, ".next").click()
@@ -439,9 +430,9 @@ class Lessons(unittest.TestCase):
         self.driver.find_element(By.XPATH, Selectors.notif_iconX).click()
         wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='mat-menu-panel-0']/div/ul/li[1]/div")))
         self.driver.find_element(By.XPATH, "//*[@id='mat-menu-panel-0']/div/ul/li[1]").click()
-        wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='wrapper']/div[2]/div[2]")))
-        self.driver.find_element(By.XPATH, "//*[@id='wrapper']/div[2]/div[2]").click()
-        wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='float']/span")))
+        wait.until(EC.element_to_be_clickable((By.XPATH, Selectors.play_songX)))
+        self.driver.find_element(By.XPATH, Selectors.play_songX).click()
+        wait.until(EC.element_to_be_clickable((By.XPATH, Selectors.cont_lessX)))
         self.driver.find_element(By.XPATH, "//*[@id='white-wrapper']/div").is_displayed()
         wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='mat-dialog-5']/app-track-tour/div/div[2]/span")))
         self.driver.find_element(By.XPATH, "//*[@id='mat-dialog-5']/app-track-tour/div/div[2]/span").click()
@@ -455,16 +446,16 @@ class Lessons(unittest.TestCase):
         self.driver.find_element(By.XPATH, Selectors.notif_iconX).click()
         wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='mat-menu-panel-0']/div/ul/li[1]/div")))
         self.driver.find_element(By.XPATH, "//*[@id='mat-menu-panel-0']/div/ul/li[1]").click()
-        wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='wrapper']/div[2]/div[2]")))
+        wait.until(EC.visibility_of_element_located((By.XPATH, Selectors.play_songX)))
         time.sleep(2)
-        self.driver.find_element(By.XPATH, "//*[@id='wrapper']/div[2]/div[3]").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='wrapper']/div[2]/div[4]").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='wrapper']/div[2]/div[5]").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='wrapper']/div[2]/div[6]").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='wrapper']/div[2]/div[7]").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='wrapper']/div[2]/div[8]").is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.vocabulary_quizX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.speaking_quizX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.grammar_testX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.unseenX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.word_pauseX).is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.fill_blanksX).is_displayed()
         self.driver.find_element(By.ID, "words-section").is_displayed()
-        self.driver.find_element(By.XPATH, "//*[@id='wrapper']/span").is_displayed()
+        self.driver.find_element(By.XPATH, Selectors.go_back_btnX).is_displayed()
 
     def tearDown(self):
         self.driver.quit()
