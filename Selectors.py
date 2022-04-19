@@ -5,6 +5,7 @@ valid_mail = "auto-testing@singit.io"
 passwordX = "//input[@type='password']"
 valid_pass = "Aa123456"
 login_btn_ID = "main-button"
+
 # Elements of main page
 logoX = "//*[@id='content']/div[1]/h1"
 notif_iconX = "//*[@id='icon']"
@@ -33,6 +34,7 @@ unseenX = "//*[@id='wrapper']/div[2]/div[6]"
 word_pauseX = "//*[@id='wrapper']/div[2]/div[7]"
 fill_blanksX = "//*[@id='wrapper']/div[2]/div[8]"
 go_back_btnX = "//*[@id='wrapper']/span"
+
 # Search page
 search_logoX = "/html/body/app-root/app-search/ion-content/div/h1"
 search_barX = "//*[@id='search-wrapper']/input"

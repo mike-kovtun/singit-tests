@@ -268,8 +268,7 @@ class Profile(unittest.TestCase):
     def test2_edit_profile_page(self):
         wait = WebDriverWait(self.driver, 10)
         self.driver.find_element(By.XPATH, Selectors.edit_profileX).click()
-        wait.until(EC.visibility_of_element_located(
-            (By.XPATH, )))
+        wait.until(EC.visibility_of_element_located((By.XPATH, Selectors.firstnameX)))
         self.driver.find_element(By.XPATH, Selectors.firstnameX).is_displayed()
         self.driver.find_element(By.XPATH, Selectors.lastnameX).is_displayed()
         self.driver.find_element(By.XPATH, Selectors.edit_emailX).is_displayed()
