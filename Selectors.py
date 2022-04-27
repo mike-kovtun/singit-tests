@@ -9,7 +9,7 @@ login_btn_ID = "main-button"
 # Elements of main page
 logoX = "//*[@id='content']/div[1]/h1"
 notif_iconX = "//*[@id='icon']"
-notif_menuX = "//*[@id='mat-menu-panel-0']"
+notif_menuX = "//*[@id='mat-menu-panel-0']/div/h3"
 most_popularX = "//*[@id='content']/div[1]/div"
 my_wordsX = "//*[@id='word-box']"
 popular_genres_logoX = "//*[@id='content']/div[2]/div[2]"
@@ -34,6 +34,7 @@ unseenX = "//*[@id='wrapper']/div[2]/div[6]"
 word_pauseX = "//*[@id='wrapper']/div[2]/div[7]"
 fill_blanksX = "//*[@id='wrapper']/div[2]/div[8]"
 go_back_btnX = "//*[@id='wrapper']/span"
+go_back_songX = "//*[@id='footer']/span"
 
 # Search page
 search_logoX = "/html/body/app-root/app-search/ion-content/div/h1"
