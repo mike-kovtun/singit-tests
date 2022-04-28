@@ -16,7 +16,7 @@ popular_genres_logoX = "//*[@id='content']/div[2]/div[2]"
 popular_genresX = "//*[@id='content']/div[2]/div[3]"
 recently_played_logoX = "//*[@id='content']/div[2]/div[4]"
 recently_playedX = "//*[@id='content']/div[2]/div[5]"
-new_notificationX = "//*[@id='mat-dialog-2']/app-new-notification-popover/div/span[2]"
+new_notificationX = "//*[@id='mat-dialog-1']/app-new-notification-popover/div/span[2]"
 
 # Navigation
 navigation_menuX = "tabs-wrapper"

@@ -9,53 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import Selectors
 
 
-
-
 class Student_side(unittest.TestCase):
-
-    def test(self):
-        self.driver = webdriver.Chrome()
-        self.driver.maximize_window()
-        wait = WebDriverWait(self.driver, 10)
-        self.driver.get("https://singit.io/auth/login")
-        self.driver.find_element(By.XPATH, Selectors.emailX).send_keys(Selectors.valid_mail)
-        self.driver.find_element(By.XPATH, Selectors.passwordX).send_keys(Selectors.valid_pass)
-        self.driver.find_element(By.ID, Selectors.login_btn_ID).click()
-        wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".next")))
-        while self.driver.find_element(By.CSS_SELECTOR, ".next").is_displayed():
-            self.driver.find_element(By.CSS_SELECTOR, ".next").click()
-        self.driver.execute_script("window.open('');")
-        self.driver.switch_to.window(self.driver.window_handles[1])
-        self.driver.get("https://dashboard.singit.io/auth/login")
-        self.driver.find_element(By.XPATH, "//*[@id='main-content']/app-login/div/form/div[2]/input").send_keys(
-            "mykhailo.kovtun.work@gmail.com")
-        self.driver.find_element(By.XPATH, "//*[@id='main-content']/app-login/div/form/div[3]/input").send_keys(
-            "Aa12345678")
-        self.driver.find_element(By.ID, "main-button").click()
-        wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='mat-dialog-0']")))
-        self.driver.find_element(By.XPATH, "//*[@id='mat-dialog-0']/app-welcome/button").click()
-        self.driver.find_element(By.XPATH, "//*[@id='sidenav']/ul/li[3]").click()
-        wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='filter']/button")))
-        self.driver.find_element(By.XPATH, "//*[@id='filter']/button").click()
-        self.driver.find_element(By.XPATH, "//*[@id='menu']/li[2]").click()
-        time.sleep(1)
-        self.driver.find_element(By.XPATH, "//*[@id='mat-chip-list-input-0']").send_keys("hi")
-        self.driver.find_element(By.XPATH,
-                                 "//*[@id='mat-dialog-1']/app-send-word/form/mat-form-field[2]/div/div[1]/div[3]").click()
-        time.sleep(1)
-        self.driver.find_element(By.XPATH, "//*[@id='mat-option-2']/span").click()
-        time.sleep(1)
-        self.driver.find_element(By.XPATH, "//*[@id='mat-dialog-1']/app-send-word/form/button").click()
-        time.sleep(1)
-        self.driver.close()
-        self.driver.switch_to.window(self.driver.window_handles[0])
-        self.driver.refresh()
-        wait.until(EC.element_to_be_clickable((By.XPATH, Selectors.notif_iconX)))
-        self.driver.find_element(By.XPATH, Selectors.notif_iconX).click()
-        time.sleep(2)
-        self.driver.find_element(By.XPATH, "//*[text()='hi ']").click()
-        time.sleep(2)
-
 
     def tests(self):
         self.driver = webdriver.Chrome()
@@ -224,8 +178,8 @@ class Student_side(unittest.TestCase):
         self.driver.find_element(By.XPATH, "//*[@id='wrapper']").is_displayed()
         ActionChains(self.driver).send_keys(Keys.ESCAPE).perform()
         # Log out
-        #self.driver.find_element(By.XPATH, Selectors.log_outX).click()
-        #self.driver.find_element(By.ID, "logo").is_displayed()
+        # self.driver.find_element(By.XPATH, Selectors.log_outX).click()
+        # self.driver.find_element(By.ID, "logo").is_displayed()
         # Word pop-up
         self.driver.find_element(By.XPATH, Selectors.explore_btnX).click()
         wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='words-wrapper']/app-word[1]/span")))
@@ -269,137 +223,54 @@ class Student_side(unittest.TestCase):
         self.driver.close()
         self.driver.switch_to.window(self.driver.window_handles[0])
         self.driver.refresh()
-        wait.until(EC.element_to_be_clickable((By.XPATH, Selectors.notif_iconX)))
+        time.sleep(4)
+        try:
+            self.driver.find_element(By.XPATH, Selectors.new_notificationX).click()
+        except NoSuchElementException:
+            print("New notification massage was refreshed")
         self.driver.find_element(By.XPATH, Selectors.notif_iconX).click()
         time.sleep(2)
         self.driver.find_element(By.XPATH, "//*[text()='hi ']").click()
+        ActionChains(self.driver).send_keys(Keys.ESCAPE).perform()
         time.sleep(2)
-
-
-# @unittest.skip
-class Notification_word(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        cls.driver = webdriver.Chrome()
-        wait = WebDriverWait(cls.driver, 10)
-        cls.driver.maximize_window()
-        cls.driver.get("https://dashboard.singit.io/auth/login")
-        cls.driver.find_element(By.XPATH, "//*[@id='main-content']/app-login/div/form/div[2]/input").send_keys(
-            "mykhailo.kovtun.work@gmail.com")
-        cls.driver.find_element(By.XPATH, "//*[@id='main-content']/app-login/div/form/div[3]/input").send_keys(
-            "Aa12345678")
-        cls.driver.find_element(By.ID, "main-button").click()
-        wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='mat-dialog-0']")))
-        cls.driver.find_element(By.XPATH, "//*[@id='mat-dialog-0']/app-welcome/button").click()
-        cls.driver.find_element(By.XPATH, "//*[@id='sidenav']/ul/li[3]").click()
-        wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='filter']/button")))
-        cls.driver.find_element(By.XPATH, "//*[@id='filter']/button").click()
-        cls.driver.find_element(By.XPATH, "//*[@id='menu']/li[2]").click()
-        time.sleep(1)
-        cls.driver.find_element(By.XPATH, "//*[@id='mat-chip-list-input-0']").send_keys("hi")
-        cls.driver.find_element(By.XPATH,
-                                "//*[@id='mat-dialog-1']/app-send-word/form/mat-form-field[2]/div/div[1]/div[3]").click()
-        time.sleep(1)
-        cls.driver.find_element(By.XPATH, "//*[@id='mat-option-2']/span").click()
-        time.sleep(1)
-        cls.driver.find_element(By.XPATH, "//*[@id='mat-dialog-1']/app-send-word/form/button").click()
-        time.sleep(1)
-        cls.driver.quit()
-
-    def setUp(self):
-        self.driver = webdriver.Chrome()
-        wait = WebDriverWait(self.driver, 10)
-        self.driver.maximize_window()
-        self.driver.get("https://singit.io/auth/login")
-        self.driver.find_element(By.XPATH, Selectors.emailX).send_keys(Selectors.valid_mail)
-        self.driver.find_element(By.XPATH, Selectors.passwordX).send_keys(Selectors.valid_pass)
-        self.driver.find_element(By.ID, Selectors.login_btn_ID).click()
-        wait.until(
-            EC.element_to_be_clickable((By.XPATH, Selectors.new_notificationX)))
-        self.driver.find_element(By.XPATH, Selectors.new_notificationX).click()
-        wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".next")))
-        while self.driver.find_element(By.CSS_SELECTOR, ".next").is_displayed():
-            self.driver.find_element(By.CSS_SELECTOR, ".next").click()
-
-    def test1_word(self):
-        wait = WebDriverWait(self.driver, 10)
-        wait.until(EC.element_to_be_clickable((By.XPATH, Selectors.notif_iconX)))
-        self.driver.find_element(By.XPATH, Selectors.notif_iconX).click()
-        time.sleep(2)
-        self.driver.find_element(By.XPATH, "//*[text()='hi ']").click()
-        time.sleep(2)
-
-    def tearDown(self):
-        self.driver.quit()
-
-
-# @unittest.skip
-class Lessons(unittest.TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        cls.driver = webdriver.Chrome()
-        wait = WebDriverWait(cls.driver, 10)
-        cls.driver.maximize_window()
-        cls.driver.get("https://dashboard.singit.io/auth/login")
-        cls.driver.find_element(By.XPATH, "//*[@id='main-content']/app-login/div/form/div[2]/input").send_keys(
-            "mykhailo.kovtun.work@gmail.com")
-        cls.driver.find_element(By.XPATH, "//*[@id='main-content']/app-login/div/form/div[3]/input").send_keys(
-            "Aa12345678")
-        cls.driver.find_element(By.ID, "main-button").click()
-        wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='mat-dialog-0']")))
-        cls.driver.find_element(By.XPATH, "//*[@id='mat-dialog-0']/app-welcome/button").click()
-        cls.driver.get('https://dashboard.singit.io/marketplace/619280583acdf03bcc59cede')
+        # lesson
+        self.driver.execute_script("window.open('');")
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        self.driver.get('https://dashboard.singit.io/marketplace/619280583acdf03bcc59cede')
         time.sleep(1)
         wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='main-details']/div[1]/button[1]")))
-        cls.driver.find_element(By.XPATH, "//*[@id='main-details']/div[1]/button[1]").click()
+        self.driver.find_element(By.XPATH, "//*[@id='main-details']/div[1]/button[1]").click()
         time.sleep(1)
-        cls.driver.find_element(By.XPATH, "//*[@id='wrapper']/div[2]/mat-form-field/div/div[1]/div[3]").click()
+        self.driver.find_element(By.XPATH, "//*[@id='wrapper']/div[2]/mat-form-field/div/div[1]/div[3]").click()
         time.sleep(1)
         wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='mat-option-2']/span")))
-        cls.driver.find_element(By.XPATH, "//*[@id='mat-option-2']/span").click()
+        self.driver.find_element(By.XPATH, "//*[@id='mat-option-2']/span").click()
         time.sleep(1)
-        cls.driver.find_element(By.XPATH, "//*[@id='wrapper']/div[3]/button[1]").click()
+        self.driver.find_element(By.XPATH, "//*[@id='wrapper']/div[3]/button[1]").click()
         time.sleep(1)
-        cls.driver.quit()
-
-    def setUp(self):
-        self.driver = webdriver.Chrome()
-        wait = WebDriverWait(self.driver, 10)
-        self.driver.maximize_window()
-        self.driver.get("https://singit.io/auth/login")
-        self.driver.find_element(By.XPATH, Selectors.emailX).send_keys(Selectors.valid_mail)
-        self.driver.find_element(By.XPATH, Selectors.passwordX).send_keys(Selectors.valid_pass)
-        self.driver.find_element(By.ID, Selectors.login_btn_ID).click()
-
-    def test1_lesson_play(self):
-        wait = WebDriverWait(self.driver, 10)
-        wait.until(
-            EC.element_to_be_clickable((By.XPATH, Selectors.new_notificationX)))
-        self.driver.find_element(By.XPATH, Selectors.new_notificationX).click()
-        wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".next")))
-        while self.driver.find_element(By.CSS_SELECTOR, ".next").is_displayed():
-            self.driver.find_element(By.CSS_SELECTOR, ".next").click()
-        wait.until(EC.element_to_be_clickable((By.XPATH, Selectors.notif_iconX)))
+        self.driver.close()
+        self.driver.switch_to.window(self.driver.window_handles[0])
+        self.driver.refresh()
+        time.sleep(4)
+        try:
+            self.driver.find_element(By.XPATH, Selectors.new_notificationX).click()
+        except NoSuchElementException:
+            print("New notification massage was refreshed")
+        time.sleep(2)
         self.driver.find_element(By.XPATH, Selectors.notif_iconX).click()
         wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='mat-menu-panel-0']/div/ul/li[1]/div")))
         self.driver.find_element(By.XPATH, "//*[@id='mat-menu-panel-0']/div/ul/li[1]").click()
+        time.sleep(1)
         wait.until(EC.element_to_be_clickable((By.XPATH, Selectors.play_songX)))
         self.driver.find_element(By.XPATH, Selectors.play_songX).click()
+        time.sleep(3)
+        ActionChains(self.driver).send_keys(Keys.ESCAPE).perform()
+        time.sleep(2)
+        self.driver.refresh()
+        time.sleep(5)
+        ActionChains(self.driver).send_keys(Keys.ESCAPE).perform()
         wait.until(EC.element_to_be_clickable((By.XPATH, Selectors.cont_lessX)))
-        self.driver.find_element(By.XPATH, "//*[@id='white-wrapper']/div").is_displayed()
-        wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='mat-dialog-5']/app-track-tour/div/div[2]/span")))
-        self.driver.find_element(By.XPATH, "//*[@id='mat-dialog-5']/app-track-tour/div/div[2]/span").click()
-
-    def test2_lesson_menu(self):
-        wait = WebDriverWait(self.driver, 10)
-        wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".next")))
-        while self.driver.find_element(By.CSS_SELECTOR, ".next").is_displayed():
-            self.driver.find_element(By.CSS_SELECTOR, ".next").click()
-        wait.until(EC.element_to_be_clickable((By.XPATH, Selectors.notif_iconX)))
-        self.driver.find_element(By.XPATH, Selectors.notif_iconX).click()
-        wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='mat-menu-panel-0']/div/ul/li[1]/div")))
-        self.driver.find_element(By.XPATH, "//*[@id='mat-menu-panel-0']/div/ul/li[1]").click()
+        self.driver.find_element(By.XPATH, Selectors.cont_lessX).click()
         wait.until(EC.visibility_of_element_located((By.XPATH, Selectors.play_songX)))
         time.sleep(2)
         self.driver.find_element(By.XPATH, Selectors.vocabulary_quizX).is_displayed()
@@ -410,9 +281,6 @@ class Lessons(unittest.TestCase):
         self.driver.find_element(By.XPATH, Selectors.fill_blanksX).is_displayed()
         self.driver.find_element(By.ID, "words-section").is_displayed()
         self.driver.find_element(By.XPATH, Selectors.go_back_btnX).is_displayed()
-
-    def tearDown(self):
-        self.driver.quit()
 
 
 if __name__ == '__main__':
